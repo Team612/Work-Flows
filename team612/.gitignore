@@ -12,7 +12,7 @@
 !build.gradle
 !vendordeps/
 !.gitignore
-!team612/.wpilib/
+!.wpilib/
 !robot.JPG
 !README.md
 !*.java
