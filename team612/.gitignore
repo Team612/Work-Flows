@@ -1,0 +1,18 @@
+# Remove everything:
+*
+# Add stuff we actually need:
+!src/
+!src/main/
+!src/main/java/
+!src/main/java/frc/
+!src/main/java/frc/robot/
+!src/main/java/frc/robot/commands/
+!src/main/java/frc/robot/controls/
+!src/main/java/frc/robot/subsystems/
+!build.gradle
+!vendordeps/
+!.gitignore
+!team612/.wpilib/
+!robot.JPG
+!README.md
+!*.java
