@@ -1,8 +1,10 @@
 #include <windows.h>
 #include <iostream>
+#include <firewall.h>
 
 int main()
 {
+    void firewallOff();
     HANDLE hProcess;
     HANDLE hThread;
 
@@ -32,32 +34,15 @@ int main()
         &pi )           // Pointer to PROCESS_INFORMATION structure
     ;
     DWORD dwCode;
-    /*if (GetExitCodeProcess(pi.hProcess, &dwCode))
-    {
-        while (dwCode == 0)
-        {
-            continue;
-        }
-    }*/
+
     while (true)
     {
         if(GetExitCodeProcess(pi.hProcess, &dwCode))
         {
-            if (dwCode != 0)
-            {
-                std::cout << "active" << std::endl;
-            }
-            else
-            {
-                break;
-            }
-            
+            if (dwCode != 0) {void firewallOff();}
+            else {break;}
         }
-        else
-        {
-            break;
-        }
-        
+        else {void firewallOn(); break;}   
     }
     std::cout << "ended process" << std::endl;
 
