@@ -19,8 +19,8 @@ int main()
     // Start the child process.
     bool process;
 
-    process = CreateProcess( TEXT(
-        "C:/Users/Myrrh's SurfacePro/AppData/Local/Programs/Microsoft VS Code Insiders/Code - Insiders.exe"),   //App name
+    process = CreateProcess( 
+        TEXT("C:/Users/Myrrh's SurfacePro/AppData/Local/Programs/Microsoft VS Code/Code.exe"),   //App name
         NULL,           // Command Line
         NULL,           // Process handle not inheritable
         NULL,           // Thread handle not inheritable
@@ -32,22 +32,34 @@ int main()
         &pi )           // Pointer to PROCESS_INFORMATION structure
     ;
     DWORD dwCode;
-    if (process == FALSE)
-    {
-        std::cout << "you have failed. shame on you, shame on your family, shame on your cow..." << GetLastError << std::endl;
-    }
-    else
-    {
-        std::cout << "Good job but we expect more of you" << std::endl;
-    }
-    int x = 0;
-    if (GetExitCodeProcess(pi.hProcess, &dwCode))
+    /*if (GetExitCodeProcess(pi.hProcess, &dwCode))
     {
         while (dwCode == 0)
         {
             continue;
         }
+    }*/
+    while (true)
+    {
+        if(GetExitCodeProcess(pi.hProcess, &dwCode))
+        {
+            if (dwCode != 0)
+            {
+                std::cout << "active" << std::endl;
+            }
+            else
+            {
+                break;
+            }
+            
+        }
+        else
+        {
+            break;
+        }
+        
     }
+    std::cout << "ended process" << std::endl;
 
     // Wait until child process exits.
     WaitForSingleObject( pi.hProcess, INFINITE );
