@@ -1,10 +1,10 @@
 #include <windows.h>
+#include "firewall.h"
 #include <iostream>
-#include <firewall.h>
 
 int main()
 {
-    void firewallOff();
+    firewallOff();
     HANDLE hProcess;
     HANDLE hThread;
 
@@ -39,10 +39,10 @@ int main()
     {
         if(GetExitCodeProcess(pi.hProcess, &dwCode))
         {
-            if (dwCode != 0) {void firewallOff();}
+            if (dwCode != 0) {firewallOff();}
             else {break;}
         }
-        else {void firewallOn(); break;}   
+        else {firewallOn(); break;}   
     }
     std::cout << "ended process" << std::endl;
 
@@ -52,4 +52,7 @@ int main()
     // Close process and thread handles. 
     CloseHandle( pi.hProcess );
     CloseHandle( pi.hThread );
+    firewallOn();
+    std::cout << "Press enter to close window" << std::endl;
+    std::cin.get();
 }
