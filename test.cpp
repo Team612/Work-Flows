@@ -22,7 +22,7 @@ int main()
     bool process;
 
     process = CreateProcess( 
-        TEXT("C:/Users/Myrrh's SurfacePro/AppData/Local/Programs/Microsoft VS Code/Code.exe"),   //App name
+        TEXT("C:/Users/Public/wpilib/2020/tools/shuffleboard.vbs"),   //App name
         NULL,           // Command Line
         NULL,           // Process handle not inheritable
         NULL,           // Thread handle not inheritable
