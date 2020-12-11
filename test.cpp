@@ -22,7 +22,7 @@ int main()
     bool process;
 
     process = CreateProcess( 
-        TEXT("C:/Users/Myrrh's SurfacePro/AppData/Local/Programs/Microsoft VS Code Insiders/Code - Insiders.exe"),   //App name
+        TEXT("C:/Users/Myrrh's SurfacePro/AppData/Local/Programs/Microsoft VS Code/Code.exe"),   //App name
         NULL,           // Command Line
         NULL,           // Process handle not inheritable
         NULL,           // Thread handle not inheritable
@@ -39,8 +39,7 @@ int main()
     {
         if(GetExitCodeProcess(pi.hProcess, &dwCode))
         {
-            if (dwCode != 0) {firewallOff();}
-            else {break;}
+            if (dwCode == 0) {break;}
         }
         else {firewallOn(); break;}   
     }
