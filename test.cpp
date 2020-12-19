@@ -25,10 +25,9 @@ int main()
         paths.push_back(path);
     }
 
-    firewallOff();
-
     for(std::string path: paths)
     {
+        firewallOff();
         LPCTSTR lp=(LPCTSTR)path.c_str();
         process(lp);
     }

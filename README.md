@@ -10,7 +10,7 @@ Instructions:
     b) Use "/" instead of "\" or "\\."
 
 Current issues:
-Afaik it doesn't seem to take multiple paths.
+Some kinks i gotta work out when opening multiple programs.
 
 Future plans:
 1) I'll see what I can do with JSON files.
