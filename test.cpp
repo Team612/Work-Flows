@@ -1,56 +1,38 @@
 #include <windows.h>
-#include "firewall.h"
 #include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+#include "firewall.h"
+#include "process.h"
 
 int main()
 {
-    firewallOff();
-    HANDLE hProcess;
-    HANDLE hThread;
-
-    STARTUPINFO si;
-    PROCESS_INFORMATION pi;
-
-    DWORD dwProcessID =0;
-    DWORD dwThreadID=0;
-
-    ZeroMemory( &si, sizeof(si) );
-    //si.cb = sizeof(si);
-    ZeroMemory( &pi, sizeof(pi) );
-
-    // Start the child process.
-    bool process;
-
-    process = CreateProcess( 
-        TEXT("C:/Users/Myrrh's SurfacePro/AppData/Local/Programs/Microsoft VS Code/Code.exe"),   //App name
-        NULL,           // Command Line
-        NULL,           // Process handle not inheritable
-        NULL,           // Thread handle not inheritable
-        FALSE,          // Set handle inheritance to FALSE
-        0,              // No creation flags
-        NULL,           // Use parent's environment block
-        NULL,           // Use parent's starting directory 
-        &si,            // Pointer to STARTUPINFO structure
-        &pi )           // Pointer to PROCESS_INFORMATION structure
-    ;
-    DWORD dwCode;
-
-    while (true)
+    std::fstream file;
+ 
+    file.open("paths.txt");
+    if (!file)
     {
-        if(GetExitCodeProcess(pi.hProcess, &dwCode))
-        {
-            if (dwCode == 0) {break;}
-        }
-        else {firewallOn(); break;}   
+        firewallOn();
     }
-    std::cout << "ended process" << std::endl;
+    std::cout << "\nFile read successfully." << std::endl;
 
-    // Wait until child process exits.
-    WaitForSingleObject( pi.hProcess, INFINITE );
+    std::vector <std::string> paths;
 
-    // Close process and thread handles. 
-    CloseHandle( pi.hProcess );
-    CloseHandle( pi.hThread );
+    std::string path;
+    while(getline(file, path))
+    {
+        paths.push_back(path);
+    }
+
+    firewallOff();
+
+    for(std::string path: paths)
+    {
+        LPCTSTR lp=(LPCTSTR)path.c_str();
+        process(lp);
+    }
+
     firewallOn();
     std::cout << "Press enter to close window" << std::endl;
     std::cin.get();
