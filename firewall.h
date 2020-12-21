@@ -3,10 +3,10 @@
 void firewallOff()
 {
     system("netsh advfirewall set allprofiles state off");
-    std::cout << "Firewall off" << std::endl;
+    std::cout << "\nFirewall off" << std::endl;
 }
 void firewallOn()
 {
     system("netsh advfirewall set allprofiles state on");
-    std::cout << "Firewall on" << std::endl;
+    std::cout << "\nFirewall on" << std::endl;
 }

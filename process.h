@@ -1,8 +1,9 @@
 #include <iostream>
 #include <Windows.h>
 
-void process(LPCTSTR path)
+void process(std::string path)
 {
+    LPCTSTR lp=(LPCTSTR)path.c_str();
     HANDLE hProcess;
     HANDLE hThread;
 
@@ -19,8 +20,10 @@ void process(LPCTSTR path)
     // Start the child process.
     bool process;
 
+    std::cout << "creating process for " << path << std::endl;
+
     process = CreateProcess( 
-        path,   //App name
+        lp,   //App name
         NULL,           // Command Line
         NULL,           // Process handle not inheritable
         NULL,           // Thread handle not inheritable
@@ -39,9 +42,9 @@ void process(LPCTSTR path)
         {
             if (dwCode == 0) {break;}
         }
-        else {firewallOn(); break;}   
+        else {break;}   
     }
-    std::cout << "ended process" << std::endl;
+    std::cout << "ended process for " << path << std::endl;
 
     // Wait until child process exits.
     WaitForSingleObject( pi.hProcess, INFINITE );
