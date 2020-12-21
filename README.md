@@ -10,8 +10,8 @@ Instructions:
     b) Use "/" instead of "\" or "\\."
 
 Current issues:
-Some kinks i gotta work out when opening multiple programs.
 
 Future plans:
 1) I'll see what I can do with JSON files.
-2) Nice interface?
+2) Better firewall using Windows API
+3) Nice interface?
