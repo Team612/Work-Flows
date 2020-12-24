@@ -1,3 +1,5 @@
+//Pretty simple. Plan on changing it though, cause using system() is bad practice apparently.
+
 #pragma once
 #include <iostream>
 void firewallOff()

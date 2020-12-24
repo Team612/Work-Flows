@@ -1,3 +1,13 @@
+/*
+Thread is passed into here.
+Opens the app's path. For example, if i wanna open the Driver's Station, it'll pass the path to Driver's Station
+    and open it up.
+Once it detects that the user has closed that app, it'll stop the thread.
+Copied from Win32 API: 
+    https://docs.microsoft.com/en-us/windows/win32/procthread/creating-processes
+NOTE: has to change the path into an LPCTSTR cause the Win32 API IS SUPER JANK MY GOD AAAA
+*/
+
 #include <iostream>
 #include <Windows.h>
 
