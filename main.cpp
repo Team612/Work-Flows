@@ -17,7 +17,6 @@ int main()
 
 int readOpen()
 {
-    std::vector <std::string> paths;
     std::string path;
     std::vector <std::thread> threads;
     std::fstream file;
@@ -35,7 +34,6 @@ int readOpen()
 
     while(getline(file, path))
     {
-        paths.push_back(path);
         threads.emplace_back(process, path);
     }
 
