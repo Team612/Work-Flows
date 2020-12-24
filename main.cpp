@@ -8,14 +8,14 @@
 #include "headers/process.h"
 #include "headers/elevate.h"
 
-void readOpen();
+int readOpen();
 
 int main()
 {
-    elevateNow(&readOpen);
+    return elevateNow(readOpen);
 }
 
-void readOpen()
+int readOpen()
 {
     std::vector <std::string> paths;
     std::string path;
@@ -25,8 +25,9 @@ void readOpen()
     file.open("paths.txt");
     if (!file)
     {
-        std::cout << "error reading file. ending program." << std::endl;
+        std::cout << "error reading file. ending program. press enter to close." << std::endl;
         std::cin.get();
+        return -1;
     }
 
     std::cout << "\nFile read successfully." << std::endl;
@@ -46,4 +47,5 @@ void readOpen()
     firewallOn();
     std::cout << "Press enter to close window" << std::endl;
     std::cin.get();
+    return 0;
 }

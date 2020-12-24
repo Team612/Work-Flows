@@ -2,16 +2,18 @@
 
 BOOL IsRunAsAdministrator();
 
-void elevateNow(void (*func)())
+int elevateNow(int (*func)())
 {
+    int x;
 	BOOL bAlreadyRunningAsAdministrator = FALSE;
 	bAlreadyRunningAsAdministrator = IsRunAsAdministrator();
 	if(!bAlreadyRunningAsAdministrator)
 	{
+        x = 0;
 		char szPath[MAX_PATH];
 		if (GetModuleFileNameA(NULL, szPath, ARRAYSIZE(szPath)))
 		{
-            
+
 			SHELLEXECUTEINFOA sei = { sizeof(sei) };
 
 			//sei.lpVerb = convertCharArrayToLPCWSTR("runas");
@@ -24,16 +26,15 @@ void elevateNow(void (*func)())
 			if (!ShellExecuteExA(&sei))
 			{
 				DWORD dwError = GetLastError();
-				//if (dwError == ERROR_CANCELLED)
-				//Annoys you to Elevate it LOL
 				CreateThread(0,0,(LPTHREAD_START_ROUTINE)elevateNow,0,0,0);
 	       	}
 		}
 	}
     else
     {
-        (*func)();
+        x = (*func)();
     }
+    return x;
 }
 
 BOOL IsRunAsAdministrator()
@@ -76,13 +77,3 @@ Cleanup:
 
     return fIsRunAsAdmin;
 }
-
-
-
-/*LPCWSTR convertCharArrayToLPCWSTR(const char* charArray)
-{
-    wchar_t* wString=new wchar_t[4096];
-    MultiByteToWideChar(CP_ACP, 0, charArray, -1, wString, 4096);
-	LPCWSTR wchar = const_cast<LPCWSTR>(wString);
-    return wchar;
-}*/
