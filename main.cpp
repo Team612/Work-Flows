@@ -4,10 +4,18 @@
 #include <vector>
 #include <string>
 #include <thread>
-#include "firewall.h"
-#include "process.h"
+#include "headers/firewall.h"
+#include "headers/process.h"
+#include "headers/elevate.h"
+
+void readOpen();
 
 int main()
+{
+    elevateNow(&readOpen);
+}
+
+void readOpen()
 {
     std::vector <std::string> paths;
     std::string path;
@@ -19,7 +27,6 @@ int main()
     {
         std::cout << "error reading file. ending program." << std::endl;
         std::cin.get();
-        return -1;
     }
 
     std::cout << "\nFile read successfully." << std::endl;
