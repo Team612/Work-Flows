@@ -40,6 +40,9 @@ void readOpen()
 
     for (auto& t: threads){t.join();}
 
+    std::cout << "to confirm that all of your programs are closed, press enter." << std::endl;
+    std::cin.get();
+
     firewallOn();
     std::cout << "Press enter to close window" << std::endl;
     std::cin.get();
